@@ -4,20 +4,20 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'rmagatti/auto-session',
-    lazy = false,
-    ---enables autocomplete for opts
-    ---@module "auto-session"
-    ---@type AutoSession.Config
-    opts = {
-      suppressed_dirs = { '~/', '~/dev', '~/Downloads', '/' },
-      auto_restore = true,
-      auto_save = true,
-      -- auto_restore_last_session = true,
-      lazy_support = true,
-      -- cwd_change_handling = true,
-      -- log_level = 'debug',
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {},
+    animation = false,
+    sidebar_filetypes = {
+      ['neo-tree'] = { event = 'BufWipeout' },
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
   {
     'tpope/vim-surround',

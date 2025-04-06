@@ -5,6 +5,8 @@ git clone https://github.com/yonext24/dotfiles ~/.dotfiles
 
 # Crear symlinks
 
+mkdir ~/.config
+
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 
 ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
