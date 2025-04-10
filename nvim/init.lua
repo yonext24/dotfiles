@@ -24,6 +24,9 @@ map('i', '<CR>', '<CR>x<BS>')
 map('n', 'o', 'ox<BS>')
 map('n', 'O', 'Ox<BS>')
 
+map('n', '<CR>', 'o<Esc>')
+map('n', '<leader><CR>', 'O<Esc>')
+
 map('n', '<leader><Tab>', 'gt')
 map('n', '<leader><S-Tab>', 'gT')
 
