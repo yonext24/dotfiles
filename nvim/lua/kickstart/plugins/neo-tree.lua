@@ -16,12 +16,18 @@ return {
   config = function()
     require('neo-tree').setup {
       window = {
-        auto_expand_width = true,
         width = 20,
         mappings = {
           ['<space>'] = 'none',
           ['<leader>'] = 'none',
           ['\\'] = 'close_window',
+          ['m'] = {
+            'move',
+            nowait = true,
+            config = {
+              show_path = 'relative',
+            },
+          },
         },
       },
     }

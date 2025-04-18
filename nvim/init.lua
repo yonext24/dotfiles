@@ -4,10 +4,14 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- :h key-notation
+
 -- MY CUSTOM KEYBINDINGS
 
 local map = vim.keymap.set
 local defaults = { noremap = true, silent = true }
+
+map('i', '<C-BS>', '<esc>diwa')
 
 map({ 'n', 'v' }, '<leader>h', '_', defaults)
 map({ 'n', 'v' }, '<leader>l', '$', defaults)
@@ -39,9 +43,6 @@ vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipbo
 vim.keymap.set({ 'n', 'x' }, '<leader>Y', '"+yg_', { desc = 'Copy to system clipboard' })
 vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
 vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
-
--- Map ctrl + backslash to delete word in insert mode
-map('i', '<C-H>', '<esc>dba', defaults)
 
 -- Ctrl+enter and Ctrl+shift+enter new lines
 map('i', '<C-CR>', '<esc>ox<BS>', defaults)
@@ -800,7 +801,7 @@ require('lazy').setup({
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          -- ['<C-n>'] = cmp.mapping.complete {},
+          ['<C-j>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
