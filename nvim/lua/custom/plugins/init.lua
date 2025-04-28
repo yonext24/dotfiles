@@ -44,4 +44,9 @@ return {
     end,
     ft = { 'markdown' },
   },
+  -- {
+  --   'vim/termdebug',
+  --   lazy = true,
+  --   enable = false,
+  -- },
 }

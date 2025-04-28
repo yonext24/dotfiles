@@ -5,13 +5,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- :h key-notation
-
 -- MY CUSTOM KEYBINDINGS
 
 local map = vim.keymap.set
 local defaults = { noremap = true, silent = true }
-
-map('i', '<C-BS>', '<esc>diwa')
 
 map({ 'n', 'v' }, '<leader>h', '_', defaults)
 map({ 'n', 'v' }, '<leader>l', '$', defaults)
@@ -23,7 +20,7 @@ map('n', '<C-Right>', ':vertical resize -5<CR>', defaults)
 map('n', '<C-Up>', ':resize +2<CR>', defaults)
 map('n', '<C-Down>', ':resize -2<CR>', defaults)
 
--- This is so intented but empty lines dont disapear when going from insert to normal mode
+-- This is so indented but empty lines dont disapear when going from insert to normal mode
 map('i', '<CR>', '<CR>x<BS>')
 map('n', 'o', 'ox<BS>')
 map('n', 'O', 'Ox<BS>')
@@ -39,10 +36,10 @@ map('n', '<leader>w', ':write<CR>', defaults)
 map('n', '<leader>a', ':wqa<CR>', defaults)
 map('n', '<leader>x', ':q<CR>', defaults)
 
-vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
-vim.keymap.set({ 'n', 'x' }, '<leader>Y', '"+yg_', { desc = 'Copy to system clipboard' })
-vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
-vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
+map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
+map({ 'n', 'x' }, '<leader>Y', '"+yg_', { desc = 'Copy to system clipboard' })
+map({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+map({ 'n', 'x' }, '<leader>P', '"+P', { desc = 'Paste from system clipboard' })
 
 -- Ctrl+enter and Ctrl+shift+enter new lines
 map('i', '<C-CR>', '<esc>ox<BS>', defaults)
@@ -50,15 +47,11 @@ map('i', '<C-S-CR>', '<esc>Ox<BS>', defaults)
 map('n', '<C-CR>', 'ox<BS>', defaults)
 map('n', '<C-S-CR>', 'Ox<BS>', defaults)
 
--- Pressing F11 to clear search results
-map('n', '<F11>', ':nohl<CR>', defaults)
-
 vim.g.sleuth_preferred_tabstop = 2
 vim.g.sleuth_preferred_indent = 2
 
 -- Setting default shell as powershell
-vim.o.shell = 'pwsh.exe'
-vim.o.shellcmdflag = '-Command'
+vim.o.shell = 'zsh'
 vim.o.shellquote = ''
 vim.o.shellxquote = ''
 
@@ -388,6 +381,8 @@ require('lazy').setup({
       for _, pair in pairs(global_mappings.telescope_mappings) do
         vim.keymap.set('n', pair.keys, builtin[pair.mapper], { desc = pair.desc })
       end
+
+      require('custom/plugins/multigrep').setup()
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -726,6 +721,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'black', 'isort' },
+        c = { 'clang-format' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
@@ -990,6 +986,8 @@ require('lazy').setup({
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymapsneo-tree
   require 'kickstart.plugins.neo-tree',
+  require('custom.plugins.terminal-management').setup(),
+
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
@@ -1004,21 +1002,7 @@ require('lazy').setup({
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
+    icons = vim.g.have_nerd_font,
   },
 })
 

@@ -61,7 +61,6 @@ return {
     { keys = '<leader>sf', mapper = 'find_files', desc = '[s]earch [f]iles' },
     { keys = '<leader>ss', mapper = 'builtin', desc = '[s]earch [s]elect telescope' },
     { keys = '<leader>sw', mapper = 'grep_string', desc = '[s]earch current [w]ord' },
-    { keys = '<leader>sg', mapper = 'live_grep', desc = '[s]earch by [g]rep' },
     { keys = '<leader>sd', mapper = 'diagnostics', desc = '[s]earch [d]iagnostics' },
     { keys = '<leader>sr', mapper = 'resume', desc = '[s]earch [r]esume' },
     { keys = '<leader>s.', mapper = 'oldfiles', desc = '[s]earch recent files ("." for repeat)' },
