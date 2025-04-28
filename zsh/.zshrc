@@ -121,6 +121,7 @@ fi
 
 # Used for nvim 10.x
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/home/y4nz/dev/utils"
 
 export dev="/mnt/c/Users/yoni/dev/"
 export NVM_DIR="$HOME/.nvm"
