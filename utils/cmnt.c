@@ -57,7 +57,7 @@ void generate_border(int longest, bool is_top) {
     wprintf(L"%ls", top_left_corner);
   else
     wprintf(L"%ls", bottom_left_corner);
-  for (int i = 1; i < longest + 2; i++) {
+  for (int i = 0; i < longest + 2; i++) {
     wprintf(L"%ls", horizontal_line);
   }
   if (is_top)
@@ -66,8 +66,17 @@ void generate_border(int longest, bool is_top) {
     wprintf(L"%ls\n", bottom_right_corner);
 }
 
+void generate_separator(int longest) {
+  wprintf(L"%ls", left_separator);
+  for (int i = 0; i < longest + 2; i++) {
+    wprintf(L"%ls", horizontal_line);
+  }
+  wprintf(L"%ls\n", right_separator);
+}
+
 int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "");
+
   fwide(stdout, 1);
 
   size_t longest = 0, arr_len = 0;
@@ -75,11 +84,14 @@ int main(int argc, char *argv[]) {
   generate_border(longest, true);
 
   for (int i = 0; i < arr_len; i++) {
-    wprintf(L"%ls %ls", vertical_line, lines[i]);
-    for (int j = 0; j < longest - wcslen(lines[i]); j++) {
-      wprintf(L" ");
+    if (wcscmp(lines[i], L"---") == 0) generate_separator(longest);
+    else {
+      wprintf(L"%ls %ls ", vertical_line, lines[i]);
+      for (int j = 0; j < longest - wcslen(lines[i]); j++) {
+        wprintf(L" ");
+      }
+      wprintf(L"%ls\n", vertical_line);
     }
-    wprintf(L"%ls\n", vertical_line);
   }
 
   generate_border(longest, false);
