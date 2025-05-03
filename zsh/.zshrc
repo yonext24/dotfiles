@@ -114,6 +114,7 @@ export VISUAL='nvim'
 alias rcat="cat"
 alias cat="batcat --no-paging"
 alias cs="xclip -selection clipboard"
+alias wclip="iconv -f UTF-8 -t UTF-16LE | clip.exe"
 
 if [[ -z "$TMUX" ]]; then
   tmux attach || tmux new-session
