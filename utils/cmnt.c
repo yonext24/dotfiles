@@ -22,20 +22,31 @@ size_t get_wchar_line(wchar_t **line, size_t max_line_length) {
   char local_line[max_line_length / sizeof(wchar_t)];
   size_t len = 0;
   char c;
+  // ┌──────────────────────────────────────────┐
+  // │ Maybe there is some etter way to do this │
+  // │ but who cares                            │
+  // └──────────────────────────────────────────┘
+  bool should_break = true;
 
   while ((c = fgetc(stdin)) != EOF) {
+    should_break = false;
     if (c == '\n')
       break;
     if (len >= max_line_length)
       return -1;
     local_line[len++] = c;
   }
+  if (should_break) {
+    return EOF;
+  }
+
   local_line[len] = '\0';
 
   *line = malloc(max_line_length);
   if (!*line) exit(EXIT_FAILURE);
 
   mbstowcs(*line, local_line, max_line_length);
+
   return len;
 }
 
@@ -43,7 +54,7 @@ wchar_t **get_input(size_t *longest, size_t *arr_len) {
   wchar_t **line_arr = malloc(MAX_LINE_LENGTH);
   size_t wlen = 0;
 
-  while ((wlen = get_wchar_line(&line_arr[*arr_len], MAX_LINE_LENGTH)) != 0) {
+  while ((wlen = get_wchar_line(&line_arr[*arr_len], MAX_LINE_LENGTH)) != -1) {
     if (wlen > *longest)
       *longest = wlen;
     (*arr_len)++;
